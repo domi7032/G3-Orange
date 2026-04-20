@@ -10,10 +10,10 @@
   :root {
     --bg: #f5f3ee;
     --paper: #faf9f6;
-    --ink: #1a1814;
+    --ink: #303030;
     --ink-light: #6b6860;
     --rule: #d6d3cc;
-    --accent: #c0392b;
+    --accent: #ba554a;
     --accent-warm: #e67e22;
     --teal: #1a7a6e;
     --surface: #edeae3;
@@ -25,19 +25,84 @@
   .masthead {
     background:var(--ink); padding:0 64px;
     display:flex; align-items:center; justify-content:space-between; height:60px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;   /* 👈 防止被下面内容盖住 */
   }
-  .masthead-logo { font-family:'DM Serif Display',serif; font-size:22px; color:var(--bg); letter-spacing:-0.5px; }
-  .masthead-logo span { font-style:italic; color:var(--accent); }
+  .masthead-logo img {
+  height: 20px;
+  vertical-align: middle;
+  }
   .masthead-tagline { font-family:'IBM Plex Mono',monospace; font-size:10px; color:rgba(245,243,238,0.4); letter-spacing:1px; text-transform:uppercase; }
-  .masthead-nav { display:flex; gap:28px; }
-  .masthead-nav a { font-size:12px; font-weight:500; color:rgba(245,243,238,0.55); text-decoration:none; letter-spacing:0.5px; transition:color 0.15s; }
-  .masthead-nav a:hover { color:var(--bg); }
-  .masthead-nav a.active { color:rgba(245,243,238,0.9); border-bottom:2px solid var(--accent); padding-bottom:2px; }
+  .masthead-nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
 
-  .section-nav { border-bottom:1px solid var(--rule); background:var(--paper); padding:0 64px; display:flex; }
-  .section-nav a { display:block; padding:14px 24px 12px; font-size:12px; font-weight:600; color:var(--ink-light); text-decoration:none; letter-spacing:0.3px; border-bottom:2px solid transparent; transition:all 0.15s; }
-  .section-nav a.active { color:var(--accent); border-bottom-color:var(--accent); }
-  .section-nav a:hover { color:var(--ink); }
+.masthead-nav a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 60px;
+  font-size: 12px;
+  font-weight: 500;
+  color: rgba(245,243,238,0.55);
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  line-height: 1;
+  transition: color 0.15s;
+}
+
+.masthead-nav a:visited {
+  color: rgba(245,243,238,0.55);
+}
+
+.masthead-nav a:hover {
+  color: var(--bg);
+}
+
+.masthead-nav a.active {
+  color: var(--bg);
+}
+
+.masthead-nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 16px;
+  height: 2px;
+  background: var(--accent);
+}
+
+  .section-nav {
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
+  padding: 0 64px;
+  display: flex;
+  align-items: center;
+}
+
+.section-nav a {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 24px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-light);
+  text-decoration: none;
+  letter-spacing: 0.3px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s;
+  line-height: 1;
+}
+
+.section-nav a.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
 
   /* ── Page header ── */
   .page-header {
@@ -99,10 +164,12 @@
 
 <!-- Nav -->
 <div class="masthead">
-  <div class="masthead-logo">Stop<span>Atlas</span></div>
-  <div class="masthead-tagline">Mapping police stops in San Francisco, one data point at a time</div>
-  <nav class="masthead-nav">
+  <div class="masthead-logo">
+  <img src="logo1.png" alt="StopAtlas Logo">
+</div>
+<nav class="masthead-nav">
     <a href="index.html">Home</a>
+    <a href="map.html">Map</a>
     <a href="data.html" class="active">Data</a>
     <a href="resources.html">Resources</a>
     <a href="research.html">User Research</a>
